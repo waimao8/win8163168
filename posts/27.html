@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>利用ssh复制粘贴安装archlinux教程 | IT迷</title><meta name="keywords" content="linux,archlinux,电脑系统"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="官方安装教程https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;index.php&#x2F;Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87) 手敲键盘部分开启SSH 首先设置root的密码 passwd  回车之后输入root的密码即可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用ssh复制粘贴安装archlinux教程">
+<meta property="og:url" content="http://example.com/posts/27.html">
+<meta property="og:site_name" content="IT迷">
+<meta property="og:description" content="官方安装教程https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;index.php&#x2F;Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87) 手敲键盘部分开启SSH 首先设置root的密码 passwd  回车之后输入root的密码即可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0wdekr.jpg">
+<meta property="article:published_time" content="2021-02-15T00:55:30.000Z">
+<meta property="article:modified_time" content="2021-05-25T17:10:24.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="archlinux">
+<meta property="article:tag" content="电脑系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0wdekr.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/posts/27"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '利用ssh复制粘贴安装archlinux教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-26 01:10:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">64</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">IT迷</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">利用ssh复制粘贴安装archlinux教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-15T00:55:30.000Z" title="发表于 2021-02-15 08:55:30">2021-02-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-25T17:10:24.000Z" title="更新于 2021-05-26 01:10:24">2021-05-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/archlinux/">archlinux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/archlinux/linux/">linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/archlinux/linux/%E7%94%B5%E8%84%91%E7%B3%BB%E7%BB%9F/">电脑系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="利用ssh复制粘贴安装archlinux教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="官方安装教程"><a href="#官方安装教程" class="headerlink" title="官方安装教程"></a>官方安装教程</h2><p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">https://wiki.archlinux.org/index.php/Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</a></p>
+<h2 id="手敲键盘部分"><a href="#手敲键盘部分" class="headerlink" title="手敲键盘部分"></a>手敲键盘部分</h2><p>开启SSH</p>
+<p>首先设置root的密码 passwd </p>
+<p>回车之后输入root的密码即可</p>
+<span id="more"></span>
+
+<p>打开sshd </p>
+<p>systemctl start sshd </p>
+<p>查看ip地址</p>
+<p> ip addr</p>
+<p>4、安装工具<br>pacman -Syy<br>pacman -S net-tools openssh</p>
+<p>5、启动 ssh</p>
+<p>systemctl start sshd</p>
+<p>dhcpcd  #网线<br>wifi-menu # wifi<br>ping <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></p>
+<p>ctrt+c  #退出ping </p>
+<h2 id="复制粘帖部分"><a href="#复制粘帖部分" class="headerlink" title="复制粘帖部分"></a>复制粘帖部分</h2><p>用ssh软件登录</p>
+<p>windows推荐Xshell        linux推荐putty</p>
+<p>登录后就可以复制下面代码敲回车就可以了。</p>
+<h3 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h3><p>查看磁盘信息  sda   </p>
+<p>fdisk -l  # 查看磁盘信息  我查看的是sda 下面请把sda改成你的就可以了   </p>
+<p>硬盘分区有两种方法，请选一种 cfdisk是图像化的  fdisk是纯命令的<br>#方法一：图像化的操作<br>cfdisk /dev/sda<br>分别用new新建三个分区 分别选择Type 选择类型<br>sda1   512M  EFI system<br>sda3    4G      linux swap      # 不要大于虚拟机实际内存<br>sda2   默认剩余全部 linux filesystem<br>分好后选择Write写入 选择<br>Quit退出  </p>
+<p>#方法二：纯命令的操作</p>
+<p>fdisk /dev/sda<br>输入m #显示菜单<br>输入p #显示硬盘情况<br>输入M 输入g   # 硬盘更改成GPT分区</p>
+<p>输入n # 分区<br>先选择1 回车再回车再输入+512M<br>输入t 输入1  # 可以输入L查看格式<br>输入W<br>输入m<br>输入n输入n # 分区<br>先选择3 回车再回车再输入+4G<br>输入t 输入19<br>输入W<br>输入m<br>输入n输入n # 分区<br>先选择2 回车再回车再回车<br>#剩余目录会自动全部分配到这里<br>sda2无需更改格式 默认是就是linux filesystem<br>输入W<br>最后输入q退出分区<br>下面命令直接打复制粘贴就可以了  sda1，2，3 请改成你自己的 </p>
+<p>#上面是两种硬盘分区教程，随便选一种吧，下面要格式化硬盘<br>fdisk -l  # 查看磁盘信息<br>下面的命令直接打复制粘贴就可以了  sda1，2，3 请改成你自己的 </p>
+<h3 id="挂载并格式化"><a href="#挂载并格式化" class="headerlink" title="挂载并格式化"></a>挂载并格式化</h3><p>mkfs.fat -F32 /dev/sda1<br>mkfs.ext4 /dev/sda2<br>mkswap /dev/sda3<br>swapon /dev/sda3</p>
+<p>挂载根分区到/mnt下    </p>
+<p>mount /dev/sda2 /mnt </p>
+<p>创建 boot 文件夹 来挂载EFI分区</p>
+<p>mkdir /mnt/boot  </p>
+<p>挂载EFI分区到 /mnt/boot 下 </p>
+<p>mount /dev/sda1 /mnt/boot  </p>
+<p>df 查看挂载情况</p>
+<h3 id="编辑软件源"><a href="#编辑软件源" class="headerlink" title="编辑软件源"></a>编辑软件源</h3><p>nano /etc/pacman.d/mirrorlist  #fdisk -k 删除多余的源，fdisk -x 退出 y 回车<br>我选了下面三个，选一个也行<br>             <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">https://mirrors.tuna.tsinghua.edu.cn/</a><br>                         mirrors.tuna.tsinghua.edu.cn<br>Server = <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch">https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</a><br>Server = <a target="_blank" rel="noopener" href="http://mirrors.163.com/archlinux/$repo/os/$arch">http://mirrors.163.com/archlinux/$repo/os/$arch</a><br>Server = <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/archlinux/$repo/os/$arch">http://mirrors.aliyun.com/archlinux/$repo/os/$arch</a></p>
+<p>Server = <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$repo/os/$arch">https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$repo/os/$arch</a><br>Server = <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch">https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</a><br>Server = <a target="_blank" rel="noopener" href="http://mirrors.163.com/archlinux/$repo/os/$arch">http://mirrors.163.com/archlinux/$repo/os/$arch</a><br>Server = <a target="_blank" rel="noopener" href="http://mirrors.163.com/archlinux-cn/$repo/os/$arch">http://mirrors.163.com/archlinux-cn/$repo/os/$arch</a></p>
+<p>更新系统<br>pacman -Syy</p>
+<h3 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h3><p>安装必须的软件包 （不建议）</p>
+<p>pacstrap /mnt base linux linux-firmware</p>
+<p>安装加强版的软件包 （建议）</p>
+<p>pacstrap /mnt base linux linux-firmware base-devel networkmanager intel-ucode vim git openssh net-tools</p>
+<p>用以下命令生成 fstab 文件 (用 -U 或 -L 选项设置UUID 或卷标)：</p>
+<p>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</p>
+<p>cat /mnt/etc/fstab<br>检查<br>vim /mnt/etc/fstab</p>
+<h3 id="Change-root-到新安装的系统"><a href="#Change-root-到新安装的系统" class="headerlink" title="Change root 到新安装的系统"></a>Change root 到新安装的系统</h3><p>arch-chroot /mnt</p>
+<p>#设置时区：<br> ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime </p>
+<p>#同步时区<br> hwclock –systohc </p>
+<p>安装vim<br>pacman -S vim</p>
+<p>本地化：</p>
+<p>设置系统语言 </p>
+<p>vim /etc/locale.gen<br>nano /etc/locale.gen </p>
+<p>把 en_US.UTF-8 UTF-8和zh_CN.UTF-8 UTF-8注释都去掉之后 按esc退出编辑模式，然后 :wq 保存退出</p>
+<p>生成一下语言</p>
+<p> locale-gen</p>
+<p>最后设置缺省的语言，这里推荐使用英文，不然到时候进入命令模式的时候会出现中文乱码 </p>
+<p>echo LANG=en_US.UTF-8 &gt;&gt; /etc/locale.conf<br>echo LANG=zh_CN.UTF-8 &gt;&gt; /etc/locale.conf<br>sudo vim /etc/locale.conf</p>
+<p>这里使用一个箭头或者两个箭头都可以</p>
+<p>设置 主机名</p>
+<p>echo archlinux &gt;&gt; /etc/hostname</p>
+<p>#网络配置<br>vim /etc/hosts  #输入下面内容</p>
+<p>127.0.0.1 localhost<br>::1 localhost<br>127.0.1.1 archlinux.localdomain archlinux</p>
+<p>127.0.0.1    localhost    localhost<br>::1          localhost   localhost<br>127.0.1.1    archlinux.localdomain    archlinux</p>
+<p>保存并退出</p>
+<p>安装网络管理（如果不安装这个服务的话，每次开机都得重新设置网络）<br>pacman -S networkmanager<br>pacman -S net-tools openssh<br>开机启动<br>systemctl enable NetworkManager sshd</p>
+<p>设置root密码<br>passwd</p>
+<p>安装一个其他用户<br>useradd -m -g wheel chenan </p>
+<p>passwd chenan</p>
+<p>pacman -S sudo</p>
+<p>visudo   # 去掉%wheel=（ALL）ALL 前面的#号</p>
+<h3 id="安装grub"><a href="#安装grub" class="headerlink" title="安装grub"></a>安装grub</h3><p>重新生成ramdisk环境<br>mkinitcpio -p linux</p>
+<p>pacman -S grub efibootmgr<br>grub-install –target=x86_64-efi –efi-directory=/boot –bootloader-id=GRUB<br>grub-mkconfig -o /boot/grub/grub.cfg</p>
+<p>exit 或按 Ctrl+d 退出 chroot 环境。</p>
+<p>可选用 umount -R /mnt 手动卸载被挂载的分区：这有助于发现任何「繁忙」的分区，并通过 fuser(1) 查找原因。</p>
+<p>最后，通过执行 reboot 重启系统</p>
+<h2 id="再用ssh软件登录，安装桌面和服务"><a href="#再用ssh软件登录，安装桌面和服务" class="headerlink" title="再用ssh软件登录，安装桌面和服务"></a>再用ssh软件登录，安装桌面和服务</h2><h3 id="添加清华源"><a href="#添加清华源" class="headerlink" title="添加清华源"></a>添加清华源</h3><p>sudo vim /etc/pacman.conf<br>把multilib和它下面一行的 # 去掉，具体是把光标移到 # 那，按 x ，然后在文件里添加 archlinuxcn 源，按 i 输入<br>[archlinuxcn]<br>Server = <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch">https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</a></p>
+<p>sudo pacman -Syu</p>
+<p>sudo pacman -S archlinuxcn-keyring</p>
+<p>sudo pacman -Syyu   #更新到最新系统</p>
+<h3 id="安装x-服务"><a href="#安装x-服务" class="headerlink" title="安装x 服务"></a>安装x 服务</h3><p>sudo pacman -S xorg</p>
+<h3 id="安装桌面环境"><a href="#安装桌面环境" class="headerlink" title="安装桌面环境"></a>安装桌面环境</h3><p>sudo pacman -S xfce4 xfce4-goodies</p>
+<h3 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h3><p>sudo pacman -S ttf-dejavu wqy-bitmapfont wqy-microhei wqy-zenhei noto-fonts noto-fonts-emoji</p>
+<h3 id="安装ligthdm"><a href="#安装ligthdm" class="headerlink" title="安装ligthdm"></a>安装ligthdm</h3><p>pacman -S lightdm lightdm-gtk-greeter</p>
+<p>sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings<br>systemctl enable lightdm</p>
+<p>systemctl enable lightdm.service</p>
+<p>从图形界面进入到命令行界面</p>
+<p>systemctl disable lightdm.service<br>从命令行进入到图形界面</p>
+<p>systemctl enable lightdm.service<br>然后</p>
+<p>systemctl start lightdm.service</p>
+<h3 id="测试开启桌面"><a href="#测试开启桌面" class="headerlink" title="测试开启桌面"></a>测试开启桌面</h3><p>sudo systemctl start lightdm.service</p>
+<h3 id="自动开启桌面"><a href="#自动开启桌面" class="headerlink" title="自动开启桌面"></a>自动开启桌面</h3><p>systemctl enable lightdm.service</p>
+<h3 id="安装声卡驱动"><a href="#安装声卡驱动" class="headerlink" title="安装声卡驱动"></a>安装声卡驱动</h3><p>sudo pacman -S alsa-utils pulseaudio-alsa</p>
+<h3 id="虚拟机显卡驱动"><a href="#虚拟机显卡驱动" class="headerlink" title="虚拟机显卡驱动"></a>虚拟机显卡驱动</h3><p>pcaman -S xf86-video-vesa</p>
+<h3 id="安装软件商店"><a href="#安装软件商店" class="headerlink" title="安装软件商店"></a>安装软件商店</h3><p>sudo pacman -S pamac</p>
+<h3 id="安装yay"><a href="#安装yay" class="headerlink" title="安装yay"></a>安装yay</h3><p>sudo pacman -S yay<br>sudo pacman -S pcaman</p>
+<h3 id="英文改中文"><a href="#英文改中文" class="headerlink" title="英文改中文"></a>英文改中文</h3><p>sudo vim /etc/locale.conf<br>LANG=en_US.UTF-8  改成 LANG=zh_CN.UTF-8</p>
+<h3 id="按照官网教程安装VMware-Tools"><a href="#按照官网教程安装VMware-Tools" class="headerlink" title="按照官网教程安装VMware Tools"></a>按照官网教程安装VMware Tools</h3><p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/VMware/Install_Arch_Linux_as_a_guest">https://wiki.archlinux.org/index.php/VMware/Install_Arch_Linux_as_a_guest</a></p>
+<p>sudo pacman -S xf86-input-vmmouse xf86-video-vmware mesa</p>
+<p>sudo pacman -S open-vm-tools gtkmm3</p>
+<p>sudo systemctl start vmtoolsd.service</p>
+<p>sudo systemctl enable vmtoolsd.service</p>
+<p>sudo systemctl start vmware-vmblock-fuse.service</p>
+<p>sudo systemctl enable vmware-vmblock-fuse.service</p>
+<p>sudo pacman -S gtkmm gtk2</p>
+<p>sudo vim /etc/mkinitcpio.conf<br>MODULES=(）前面加# 下一行加上下面的代码<br>MODULES=(vsock vmw_vsock_vmci_transport vmw_balloon vmw_vmci vmwgfx)</p>
+<h3 id="Xorg设置"><a href="#Xorg设置" class="headerlink" title="Xorg设置"></a>Xorg设置</h3><p>pacman -S xf86-input-vmmouse xf86-video-vmware mesa<br>yay -S xf86-input-vmmouse xf86-video-vmware mesa</p>
+<p>vim /etc/X11/Xwrapper.config</p>
+<p>needs_root_rights=yes</p>
+<h3 id="安装小企鹅"><a href="#安装小企鹅" class="headerlink" title="安装小企鹅"></a>安装小企鹅</h3><p>sudo pacman -S fcitx fcitx-im fcitx-configtool</p>
+<p>sudo pacman -S fcitx fcitx-im</p>
+<h3 id="配置小企鹅输入法"><a href="#配置小企鹅输入法" class="headerlink" title="配置小企鹅输入法"></a>配置小企鹅输入法</h3><p>sudo vim ~/.xprofile</p>
+<p>在文件中加入如下几行配置：</p>
+<p>#fcitx<br>export LC_ALL=zh_CN.UTF-8<br>export GTK_IM_MODULE=fcitx<br>export QT_IM_MODULE=fcitx<br>export XMODIFIERS=”@im=fcitx”</p>
+<h3 id="安装搜狗输入法"><a href="#安装搜狗输入法" class="headerlink" title="安装搜狗输入法"></a>安装搜狗输入法</h3><p>sudo pacman -S yay<br>yay -S fcitx-sogoupinyin<br>yay -S fcitx-qt4</p>
+<p>从AUR下载安装包并安装<br>打开<a target="_blank" rel="noopener" href="https://aur.archlinux.org/">https://aur.archlinux.org/</a><br><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/deepin.com.qq.im.light/">https://aur.archlinux.org/packages/deepin.com.qq.im.light/</a><br>解压<br>tar -zxvf deepin.com.qq.im.light.tar.gz<br>在解压后的目录输入<br>makepkg -s<br>编译完成后会生成一个.pkg.tar.xz的文件,再用pacman -U执行本地安装<br>pacman -U deepin.com.qq.im.light-7.9.14308deepin8-4-x86_64.pkg.tar.zst</p>
+<p>tar -zxvf  deepin-wine-wechat.tar.gz</p>
+<p>pacman -U deepin.com.qq.im.light.tar.gz</p>
+<h3 id="谷歌输入法"><a href="#谷歌输入法" class="headerlink" title="谷歌输入法"></a>谷歌输入法</h3><p>sudo pacman -S fcitx-googlepinyin</p>
+<h3 id="常用软件安装"><a href="#常用软件安装" class="headerlink" title="常用软件安装"></a>常用软件安装</h3><p>wps</p>
+<p><a target="_blank" rel="noopener" href="https://linux.wps.cn/">https://linux.wps.cn/</a><br>yay -S wps-office<br>安装中文<br>yay -S wps-office-mui-zh-cn</p>
+<p>可以到软件商店设置里面开启AUR<br>找到wps-office-mui-zh-cn 点击构建  耐心等待几分钟，安装后 新建一个文档<br>右上角有个A字，点击，就可以选择中文，重启WPS 就是中文的了</p>
+<p>yaourt -S deepin.com.qq.im</p>
+<p>yaourt -S deepin-wine deepin-wine32</p>
+<p>wps 依赖字体</p>
+<p>sudo pacman -S ttf-wps-fonts</p>
+<p>google-chrome<br>sudo pacman -S google-chrome</p>
+<p>Markdown编辑器<br>sudo pacman -S typora</p>
+<p>网易云音乐<br>sudo pacman -S netease-cloud-music<br>yaourt -S netease-cloud-music</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14J411i72o?from=search&amp;seid=10908065740456618903">https://www.bilibili.com/video/BV14J411i72o?from=search&amp;seid=10908065740456618903</a><br><a target="_blank" rel="noopener" href="https://github.com/xylzq/arch">https://github.com/xylzq/arch</a></p>
+<h3 id="关于arch的一些实用软件"><a href="#关于arch的一些实用软件" class="headerlink" title="关于arch的一些实用软件"></a>关于arch的一些实用软件</h3><p>1.录屏软件</p>
+<p>sudo pacman -S simplescreenrecorder<br>2.显示按键软件</p>
+<p>sudo pacman -S screenkey<br>3.剪辑视频软件</p>
+<p>sudo pacman -S kdenlive<br>汉化<br>sudo mv kdenlive.mo /usr/share/locale/zh_CN/LC_MESSAGES/</p>
+<p>pan.baidu.com/s/1dFF8kp<br>4.修图软件</p>
+<p>sudo pacman -S gimp</p>
+<p>安装坚果云<br>sudo pacman -S nutstore</p>
+<p>安装微信<br>sudo pacman -S electronic-wechat</p>
+<p>安装<br>sudo pacman -S yaourt</p>
+<p>网盘同步Rclone<br>sudo pacman -S rclone</p>
+<p>gitkraken -Git管理工具</p>
+<p>sudo pacman -S gitkraken<br>Vscode:visual-studio-code-bin<br>yay -S visual-studio-code-bin</p>
+<p>Virtualbox<br>sudo pacman -S virtualbox </p>
+<p>aur qq<br><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/deepin.com.qq.im.light/">https://aur.archlinux.org/packages/deepin.com.qq.im.light/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/orangbus/tool">https://github.com/orangbus/tool</a></p>
+<p>画图软件 KRITA</p>
+<p>安装AppImage软件<br>添加可执行权限<br>chmod a+x <em>.AppImage<br>执行它！<br>./</em>.AppImage</p>
+<p>chmod a+x Qv2ray.v2.7.0-pre1.linux-x64.AppImage<br>./Qv2ray.v2.7.0-pre1.linux-x64.AppImage</p>
+<h3 id="一个将deb包转换成pkg包的软件"><a href="#一个将deb包转换成pkg包的软件" class="headerlink" title="一个将deb包转换成pkg包的软件"></a>一个将deb包转换成pkg包的软件</h3><p>debtap配置安装<br>sudo pacman -S pkgfile<br>git clone <a target="_blank" rel="noopener" href="https://github.com/helixarch/debtap">https://github.com/helixarch/debtap</a><br>cd debtap<br> sudo cp debtap /usr/local/bin<br> sudo debtap -u  </p>
+<p>sudo vim /usr/bin/debtap</p>
+<p>使用方法<br>   sudo debtap xxxx.deb</p>
+<p>安装时会提示输入包名，以及license。包名随意，license就填GPL</p>
+<p>安装转换好的本地包<br>   sudo pacman -U xxx.tar.xz</p>
+<p>sudo debtap wps-office_11.1.0.9719_amd64.deb</p>
+<p>sudo pacman -U wps-office-11.1.0.9719-1-x86_64.pkg.tar.zst</p>
+<p>sudo debtap Tenvideo_universal_1.0.10_amd64.deb</p>
+<p>sudo pacman -U tenvideo-universal-1.0.10-1-x86_64.pkg.tar.zst</p>
+<h3 id="安装安卓模拟器xDroid"><a href="#安装安卓模拟器xDroid" class="headerlink" title="安装安卓模拟器xDroid"></a>安装安卓模拟器xDroid</h3><p><a target="_blank" rel="noopener" href="https://www.linzhuotech.com/">https://www.linzhuotech.com/</a></p>
+<p>系统更新<br>sudo pacman -Syu </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/27.html">http://example.com/posts/27.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">IT迷</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linux/">linux</a><a class="post-meta__tags" href="/tags/archlinux/">archlinux</a><a class="post-meta__tags" href="/tags/%E7%94%B5%E8%84%91%E7%B3%BB%E7%BB%9F/">电脑系统</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0wdekr.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/26.html"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0p78kp.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ubuntu安装hugo教程</div></div></a></div><div class="next-post pull-right"><a href="/posts/23.html"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0w3mmq.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">n1终极玩法Armbian-5.77安装docker宝塔openwrt和HomeAssistant</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/29.html" title="利用脚本安装archlinux教程"><img class="cover" src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0w1drq.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-12</div><div class="title">利用脚本安装archlinux教程</div></div></a></div><div><a href="/posts/14.html" title="小白电脑安装windows系统，linxu和黑苹果的相关资料"><img class="cover" src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-1j98rv.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-13</div><div class="title">小白电脑安装windows系统，linxu和黑苹果的相关资料</div></div></a></div><div><a href="/posts/26.html" title="ubuntu安装hugo教程"><img class="cover" src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0p78kp.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-15</div><div class="title">ubuntu安装hugo教程</div></div></a></div><div><a href="/posts/25.html" title="老爷机的福音lubuntu18.04"><img class="cover" src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0jpxzy.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-16</div><div class="title">老爷机的福音lubuntu18.04</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">64</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">官方安装教程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E6%95%B2%E9%94%AE%E7%9B%98%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">手敲键盘部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E5%B8%96%E9%83%A8%E5%88%86"><span class="toc-number">3.</span> <span class="toc-text">复制粘帖部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA"><span class="toc-number">3.1.</span> <span class="toc-text">硬盘分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E5%B9%B6%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">挂载并格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">3.3.</span> <span class="toc-text">编辑软件源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.4.</span> <span class="toc-text">安装系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Change-root-%E5%88%B0%E6%96%B0%E5%AE%89%E8%A3%85%E7%9A%84%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.5.</span> <span class="toc-text">Change root 到新安装的系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85grub"><span class="toc-number">3.6.</span> <span class="toc-text">安装grub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E7%94%A8ssh%E8%BD%AF%E4%BB%B6%E7%99%BB%E5%BD%95%EF%BC%8C%E5%AE%89%E8%A3%85%E6%A1%8C%E9%9D%A2%E5%92%8C%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.</span> <span class="toc-text">再用ssh软件登录，安装桌面和服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%B8%85%E5%8D%8E%E6%BA%90"><span class="toc-number">4.1.</span> <span class="toc-text">添加清华源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85x-%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.2.</span> <span class="toc-text">安装x 服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83"><span class="toc-number">4.3.</span> <span class="toc-text">安装桌面环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%AD%97%E4%BD%93"><span class="toc-number">4.4.</span> <span class="toc-text">安装字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ligthdm"><span class="toc-number">4.5.</span> <span class="toc-text">安装ligthdm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%BC%80%E5%90%AF%E6%A1%8C%E9%9D%A2"><span class="toc-number">4.6.</span> <span class="toc-text">测试开启桌面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%BC%80%E5%90%AF%E6%A1%8C%E9%9D%A2"><span class="toc-number">4.7.</span> <span class="toc-text">自动开启桌面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.8.</span> <span class="toc-text">安装声卡驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.9.</span> <span class="toc-text">虚拟机显卡驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%95%86%E5%BA%97"><span class="toc-number">4.10.</span> <span class="toc-text">安装软件商店</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85yay"><span class="toc-number">4.11.</span> <span class="toc-text">安装yay</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8B%B1%E6%96%87%E6%94%B9%E4%B8%AD%E6%96%87"><span class="toc-number">4.12.</span> <span class="toc-text">英文改中文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E5%AE%98%E7%BD%91%E6%95%99%E7%A8%8B%E5%AE%89%E8%A3%85VMware-Tools"><span class="toc-number">4.13.</span> <span class="toc-text">按照官网教程安装VMware Tools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xorg%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.14.</span> <span class="toc-text">Xorg设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%B0%8F%E4%BC%81%E9%B9%85"><span class="toc-number">4.15.</span> <span class="toc-text">安装小企鹅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%B0%8F%E4%BC%81%E9%B9%85%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">4.16.</span> <span class="toc-text">配置小企鹅输入法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%90%9C%E7%8B%97%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">4.17.</span> <span class="toc-text">安装搜狗输入法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%B7%E6%AD%8C%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">4.18.</span> <span class="toc-text">谷歌输入法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">4.19.</span> <span class="toc-text">常用软件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Earch%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="toc-number">4.20.</span> <span class="toc-text">关于arch的一些实用软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%B0%86deb%E5%8C%85%E8%BD%AC%E6%8D%A2%E6%88%90pkg%E5%8C%85%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="toc-number">4.21.</span> <span class="toc-text">一个将deb包转换成pkg包的软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93%E6%A8%A1%E6%8B%9F%E5%99%A8xDroid"><span class="toc-number">4.22.</span> <span class="toc-text">安装安卓模拟器xDroid</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/undefined.html" title="Hello World"><img src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0wgppx.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/posts/undefined.html" title="Hello World">Hello World</a><time datetime="2021-07-27T08:41:03.869Z" title="发表于 2021-07-27 16:41:03">2021-07-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/30.html" title="hugo静态博客部署到github的脚本"><img src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-4gdzjd.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hugo静态博客部署到github的脚本"/></a><div class="content"><a class="title" href="/posts/30.html" title="hugo静态博客部署到github的脚本">hugo静态博客部署到github的脚本</a><time datetime="2021-04-12T00:18:30.000Z" title="发表于 2021-04-12 08:18:30">2021-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/29.html" title="利用脚本安装archlinux教程"><img src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0w1drq.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用脚本安装archlinux教程"/></a><div class="content"><a class="title" href="/posts/29.html" title="利用脚本安装archlinux教程">利用脚本安装archlinux教程</a><time datetime="2021-04-12T00:15:30.000Z" title="发表于 2021-04-12 08:15:30">2021-04-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/25.html" title="老爷机的福音lubuntu18.04"><img src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0jpxzy.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="老爷机的福音lubuntu18.04"/></a><div class="content"><a class="title" href="/posts/25.html" title="老爷机的福音lubuntu18.04">老爷机的福音lubuntu18.04</a><time datetime="2021-02-16T07:30:08.000Z" title="发表于 2021-02-16 15:30:08">2021-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/26.html" title="ubuntu安装hugo教程"><img src="https://cdn.jsdelivr.net/gh/waimao365/logo/logo/wallhaven-0p78kp.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu安装hugo教程"/></a><div class="content"><a class="title" href="/posts/26.html" title="ubuntu安装hugo教程">ubuntu安装hugo教程</a><time datetime="2021-02-15T07:55:32.000Z" title="发表于 2021-02-15 15:55:32">2021-02-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
